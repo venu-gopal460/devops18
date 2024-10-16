@@ -24,13 +24,16 @@ resource "aws_launch_template" "web_server_as" {
   }
 resource "aws_autoscaling_group" "web_server_asg" {
     name                 = "web-server-asg"
-    launch_configuration = aws_launch_template.web_server_as.name
     min_size             = 1
     max_size             = 3
     desired_capacity     = 2
     health_check_type    = "EC2"
     load_balancers       = [aws_elb.web_server_lb.name]
     availability_zones    = ["us-east-1a", "us-east-1b"] 
+    launch_template {
+        id      = aws_launch_template.web_server_as.id
+        version = "$Latest"
+      }
     
   }
 
