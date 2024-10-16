@@ -3,7 +3,7 @@ resource "aws_launch_template" "web_server_as" {
     image_id           = "ami-00f251754ac5da7f0"
     instance_type = "t2.micro"
     key_name = "mustafakey-pair"
-    security_groups = [aws_security_group.web_server.id]
+    
 }
    
 
