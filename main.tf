@@ -3,6 +3,9 @@ resource "aws_launch_template" "web_server_as" {
     image_id           = "ami-0454e52560c7f5c55"
     instance_type = "t2.micro"
     key_name = "lastone"
+    tags = {
+        Name = "DevOps"
+    }
     
 }
    
@@ -34,6 +37,7 @@ resource "aws_autoscaling_group" "web_server_asg" {
         id      = aws_launch_template.web_server_as.id
         version = "$Latest"
       }
+    
     
   }
 
