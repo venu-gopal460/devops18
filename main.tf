@@ -1,9 +1,9 @@
 resource "aws_launch_template" "web_server_as" {
     name = "myproject"
-    image_id           = "ami-0454e52560c7f5c55"
+    image_id           = "ami-00ca32bbc84273381"
     vpc_security_group_ids = [aws_security_group.web_server.id]
-    instance_type = "t2.micro"
-    key_name = "lastone"
+    instance_type = "t2.medium"
+    key_name = "terraform-sg"
     tags = {
         Name = "DevOps"
     }
@@ -15,7 +15,7 @@ resource "aws_launch_template" "web_server_as" {
   resource "aws_elb" "web_server_lb"{
      name = "web-server-lb"
      security_groups = [aws_security_group.web_server.id]
-     subnets = ["subnet-024286466e258f339", "subnet-09558309acf4661a8"]
+     subnets = ["subnet-0c4455a11ba45e0ba", "subnet-08479b0e5dc7d6799"]
      listener {
       instance_port     = 8000
       instance_protocol = "http"
